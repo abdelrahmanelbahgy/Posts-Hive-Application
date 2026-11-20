@@ -43,17 +43,14 @@ posts_hive_app/
 
 ## Screenshots
 ### 1. Posts loaded online
-![Online](screenshots/online.png)
+![Online](screenshots/loadedOnline.png)
 ### 2. Posts loaded offline (airplane mode)
-![Offline](screenshots/offline.png)
+![Offline](screenshots/loadedOffline.png)
 ### 3. Favoriting a post
 ![Favorite](screenshots/favorite.png)
 ### 4. Favorites screen
 ![Favorites](screenshots/favorites.png)
-### 5. Empty favorites
-![Empty](screenshots/empty.png)
-### 6. Favorites after restart in airplane mode
-![Persist](screenshots/persist.png)
+
 
 ## Run
 flutter pub get
