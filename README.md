@@ -15,23 +15,14 @@ with Hive so they work without internet, and lets users save favorites.
 Flutter, Dart, Hive, hive_flutter, http
 
 ## Project Structure
-posts_hive_app/
-├── android/
-├── ios/
-├── web/
-├── lib/
-│   ├── main.dart
-│   ├── models/post_model.dart
-│   ├── models/post_model.g.dart
-│   ├── services/
-│   ├── screens/
-│   └── widgets/
-├── screenshots/
-├── pubspec.yaml
-├── pubspec.lock
-├── analysis_options.yaml
-├── .gitignore
-└── README.md
+```
+lib/
+├── main.dart
+├── models/post_model.dart (+ generated post_model.g.dart)
+├── services/post_service.dart, favorites_service.dart
+├── screens/posts_screen.dart, favorites_screen.dart
+└── widgets/post_card.dart
+```
 
 
 ## How It Works
@@ -53,9 +44,11 @@ posts_hive_app/
 
 
 ## Run
+```
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 flutter run
+```
 
 ## Author
 AbdelRahman Elbahgy, Alexandria University
