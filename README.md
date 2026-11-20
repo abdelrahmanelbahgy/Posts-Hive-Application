@@ -1,38 +1,64 @@
 # Offline Posts App (Flutter + Hive)
 
-Posts app that fetches from JSONPlaceholder, caches to **Hive** for offline use,
-and lets the user save **favorites** in a separate box.
+A Flutter app that fetches posts from JSONPlaceholder, caches them locally
+with Hive so they work without internet, and lets users save favorites.
 
 ## Features
-- API -> Hive -> ListView (works in airplane mode)
-- Pull to refresh
-- Favorite / unfavorite posts (filled / outlined star, instant update)
+- Fetches posts from the API and caches them in Hive (`postsBox`)
+- Offline mode: shows the last saved posts when there is no connection
+- Pull-to-refresh
+- Mark/unmark posts as favorites (filled / outlined star)
 - Favorites screen with "No favorites yet" empty state
-- Favorites persist across refreshes and restarts
+- Favorites stored in a separate box (`favoritesBox`), so they survive refresh and restart
 
-## Structure
-```
-lib/
-├── main.dart
-├── models/post_model.dart (+ generated post_model.g.dart)
-├── services/post_service.dart, favorites_service.dart
-├── screens/posts_screen.dart, favorites_screen.dart
-└── widgets/post_card.dart
-```
+## Tech Stack
+Flutter, Dart, Hive, hive_flutter, http
+
+## Project Structure
+posts_hive_app/
+├── android/
+├── ios/
+├── web/
+├── lib/
+│   ├── main.dart
+│   ├── models/post_model.dart
+│   ├── models/post_model.g.dart
+│   ├── services/
+│   ├── screens/
+│   └── widgets/
+├── screenshots/
+├── pubspec.yaml
+├── pubspec.lock
+├── analysis_options.yaml
+├── .gitignore
+└── README.md
+
+
+## How It Works
+- `PostService`: tries the API first, saves to Hive, falls back to Hive on failure
+- `FavoritesService`: toggleFavorite, isFavorite, getFavorites
+- Favorites use a copy of the Post, because a HiveObject can only live in one box
+- Favorites live in their own box because `postsBox.clear()` runs on every refresh
+
+
+## Screenshots
+### 1. Posts loaded online
+![Online](screenshots/online.png)
+### 2. Posts loaded offline (airplane mode)
+![Offline](screenshots/offline.png)
+### 3. Favoriting a post
+![Favorite](screenshots/favorite.png)
+### 4. Favorites screen
+![Favorites](screenshots/favorites.png)
+### 5. Empty favorites
+![Empty](screenshots/empty.png)
+### 6. Favorites after restart in airplane mode
+![Persist](screenshots/persist.png)
 
 ## Run
-```
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 flutter run
-```
 
-## Screenshots
-| Feature | Screenshot |
-|---|---|
-| Posts loaded online | _add image_ |
-| Posts loaded offline (airplane mode) | _add image_ |
-| Favorite toggled (filled star) | _add image_ |
-| Favorites screen | _add image_ |
-| Empty favorites | _add image_ |
-| Favorites after restart in airplane mode | _add image_ |
+## Author
+AbdelRahman Elbahgy, Alexandria University
